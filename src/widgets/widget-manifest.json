@@ -1,0 +1,66 @@
+{
+  "widgets": [
+    {
+      "uri": "doctor-directory",
+      "name": "Doctor Directory",
+      "description": "Searchable doctor list that expands into a full profile view",
+      "toolName": "list_doctors",
+      "examples": {
+        "request": { "page": 1, "limit": 10 },
+        "response": {
+          "doctors": [{ "doctorId": "doc-001", "fullName": "Dr. Anjali Menon" }],
+          "pagination": { "page": 1, "limit": 10, "total": 1, "pages": 1 }
+        }
+      }
+    },
+    {
+      "uri": "appointment-confirmation",
+      "name": "Appointment Confirmation",
+      "description": "Booking confirmation with invoice-style fee summary",
+      "toolName": "book_appointment",
+      "examples": {
+        "request": { "patientId": "pat-001", "patientName": "Ravi Kumar", "doctorId": "doc-001", "date": "2026-07-20", "time": "9:00 AM" },
+        "response": { "appointmentId": "apt-0001", "status": "Confirmed", "consultationFee": 900 }
+      }
+    },
+    {
+      "uri": "medical-record-viewer",
+      "name": "Medical Record Viewer",
+      "description": "Tabbed view of a patient's consultation notes, lab reports, and doctor-to-doctor shared notes",
+      "toolName": "get_patient_medical_record",
+      "examples": {
+        "request": { "patientId": "pat-001" },
+        "response": {
+          "patientId": "pat-001",
+          "patientName": "Ravi Kumar",
+          "consultationNotes": [],
+          "sharedNotes": [],
+          "labReports": []
+        }
+      }
+    },
+    {
+      "uri": "pharmacy-inventory",
+      "name": "Pharmacy Inventory",
+      "description": "Searchable medicine inventory with stock levels, pricing, and a Prescribe action",
+      "toolName": "list_medicines",
+      "examples": {
+        "request": { "page": 1, "limit": 20 },
+        "response": {
+          "medicines": [{ "medicineId": "med-001", "name": "Paracetamol 500mg", "stockQuantity": 500 }],
+          "pagination": { "page": 1, "limit": 20, "total": 10, "pages": 1 }
+        }
+      }
+    },
+    {
+      "uri": "patient-dashboard",
+      "name": "Patient Dashboard",
+      "description": "Patient overview with contact info, reported symptoms, and assigned department — also handles patient lists",
+      "toolName": "get_patient",
+      "examples": {
+        "request": { "patientId": "pat-001" },
+        "response": { "patientId": "pat-001", "fullName": "Ravi Kumar", "assignedDepartment": "Cardiology", "assignmentConfidence": "High" }
+      }
+    }
+  ]
+}
