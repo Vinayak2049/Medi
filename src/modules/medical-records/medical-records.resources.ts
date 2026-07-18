@@ -17,6 +17,13 @@ export class MedicalRecordsResources {
   async getMedicalRecordResource(uri: string) {
     const patientId = uri.split('medical-record://')[1];
     const record = await this.medicalRecordsService.getPatientRecord(patientId);
-    return { type: 'json' as const, data: record };
+    // ✅ CORRECT FORMAT
+    return {
+      contents: [{
+        uri,
+        mimeType: 'application/json',
+        text: JSON.stringify(record, null, 2)
+      }]
+    };
   }
 }

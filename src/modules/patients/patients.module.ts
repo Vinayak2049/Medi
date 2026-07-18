@@ -7,9 +7,12 @@ import { DatabaseModule } from '../../common/database.module.js';
 @Module({
   name: 'patients',
   description: 'Patient Onboarding — register, view, and list patients',
-  controllers: [PatientsTools, PatientsResources],
-  providers: [PatientsService],
+  providers: [
+    PatientsService,
+    PatientsTools,         // ✅ Move here
+    PatientsResources      // ✅ Move here
+  ],
   imports: [DatabaseModule],
-  exports: [PatientsService]
+  exports: [PatientsService, PatientsTools, PatientsResources]
 })
 export class PatientsModule {}

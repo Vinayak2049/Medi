@@ -15,6 +15,14 @@ export class AppointmentsResources {
     const appointmentId = uri.split('appointment://')[1];
     const appointment = await this.appointmentsService.findById(appointmentId);
     if (!appointment) throw new Error(`Appointment with ID "${appointmentId}" not found`);
-    return { type: 'json' as const, data: appointment };
+    
+    // ✅ Return in correct MCP format
+    return {
+      contents: [{
+        uri,
+        mimeType: 'application/json',
+        text: JSON.stringify(appointment, null, 2)
+      }]
+    };
   }
 }

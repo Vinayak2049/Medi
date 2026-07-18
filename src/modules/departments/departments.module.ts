@@ -7,9 +7,12 @@ import { PatientsModule } from '../patients/patients.module.js';
 @Module({
   name: 'departments',
   description: 'Intelligent Department Assignment — recommend a department from reported symptoms',
-  controllers: [DepartmentsTools, DepartmentsResources],
-  providers: [DepartmentsService],
-  imports: [PatientsModule], // needs PatientsService to save the assignment onto a patient
-  exports: [DepartmentsService]
+  providers: [
+    DepartmentsService,
+    DepartmentsTools,      // ✅ Move here
+    DepartmentsResources   // ✅ Move here
+  ],
+  imports: [PatientsModule],
+  exports: [DepartmentsService, DepartmentsTools, DepartmentsResources]
 })
 export class DepartmentsModule {}

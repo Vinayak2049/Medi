@@ -15,6 +15,14 @@ export class DoctorsResources {
     const doctorId = uri.split('doctor://')[1];
     const doctor = await this.doctorsService.findById(doctorId);
     if (!doctor) throw new Error(`Doctor with ID "${doctorId}" not found`);
-    return { type: 'json' as const, data: doctor };
+    
+    // ✅ CORRECT FORMAT
+    return {
+      contents: [{
+        uri,
+        mimeType: 'application/json',
+        text: JSON.stringify(doctor, null, 2)
+      }]
+    };
   }
 }

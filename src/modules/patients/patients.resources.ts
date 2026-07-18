@@ -18,6 +18,13 @@ export class PatientsResources {
     const patientId = uri.split('patient://')[1];
     const patient = await this.patientsService.findById(patientId);
     if (!patient) throw new Error(`Patient with ID "${patientId}" not found`);
-    return { type: 'json' as const, data: patient };
+    // ✅ CORRECT FORMAT
+    return {
+      contents: [{
+        uri,
+        mimeType: 'application/json',
+        text: JSON.stringify(patient, null, 2)
+      }]
+    };
   }
 }

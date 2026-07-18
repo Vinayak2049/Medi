@@ -15,6 +15,13 @@ export class DepartmentsResources {
   })
   async getCatalog(uri: string) {
     const departments = await this.departmentsService.listCatalog();
-    return { type: 'json' as const, data: { departments } };
+    // ✅ CORRECT FORMAT
+    return {
+      contents: [{
+        uri,
+        mimeType: 'application/json',
+        text: JSON.stringify({ departments }, null, 2)
+      }]
+    };
   }
 }
