@@ -1,1 +1,16 @@
 .nitrostudio/
+# Dependencies
+node_modules/
+src/widgets/node_modules/
+
+# Build output
+dist/
+out/
+src/widgets/out/
+
+# Environment files
+.env
+.env.*
+
+# Logs
+*.log
