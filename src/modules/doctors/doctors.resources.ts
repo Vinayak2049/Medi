@@ -1,6 +1,7 @@
-import { ResourceDecorator as Resource, ExecutionContext } from '@nitrostack/core';
+import { ResourceDecorator as Resource, ExecutionContext, Injectable } from '@nitrostack/core';
 import { DoctorsService } from './doctors.service.js';
 
+@Injectable({ deps: [DoctorsService] })
 export class DoctorsResources {
   constructor(private doctorsService: DoctorsService) {}
 

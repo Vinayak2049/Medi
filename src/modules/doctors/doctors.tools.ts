@@ -1,4 +1,4 @@
-import { ToolDecorator as Tool, Widget, Cache, ExecutionContext } from '@nitrostack/core';
+import { ToolDecorator as Tool, Widget, Cache, ExecutionContext, Injectable } from '@nitrostack/core';
 import { z } from 'zod';
 import { DoctorsService, NotFoundError } from './doctors.service.js';
 
@@ -17,6 +17,7 @@ const GetDoctorInput = z.object({
   doctorId: z.string().min(1)
 });
 
+@Injectable({ deps: [DoctorsService] })
 export class DoctorsTools {
   constructor(private doctorsService: DoctorsService) {}
 
